@@ -1,25 +1,30 @@
-import {Component} from "react";
-import PageHeader from "./components/PageHeader";
-import {BlurBG, LevelAndBtn, NameOfGame, StartButton} from "./components/styles";
+import {BlurBG, GameInfoInput, NameOfGame, CommonButton} from "./components/styles";
 
-class StartPage extends Component {
-    render() {
-        return (
+export default function StartPage() {
+    return (
+        <div>
+            <BlurBG/>
             <div
                 style={{
+                    height: "100%",
                     display: "flex",
-                    justifyContent: "center",
+                    justifyContent: "start",
                     alignItems: "center",
+                    flexDirection: "column",
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
                 }}
             >
-                {/*<PageHeader />*/}
-                {/*<BlurBG />*/}
-                {/*<LevelAndBtn />*/}
                 <NameOfGame>Космический симулятор</NameOfGame>
-                <StartButton>Старт!</StartButton>
+                <div style={{flexDirection: "row"}}>
+                    <GameInfoInput/>
+                    <GameInfoInput style={{label: "Таймер"}}/>
+                </div>
+                <CommonButton>Начать игру</CommonButton>
             </div>
-        )
-    }
+        </div>
+    )
 }
 
-export default StartPage;

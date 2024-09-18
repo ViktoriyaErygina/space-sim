@@ -1,13 +1,9 @@
 import './App.css';
-import {Component} from "react";
+import GameOverPage from "./pages/GameOverPage";
 import StartPage from "./pages/StartPage";
 
-class App extends Component {
-    render() {
+export default function App() {
         return (
             <StartPage />
         );
-    }
 }
-
-export default App;
