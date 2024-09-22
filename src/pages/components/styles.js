@@ -36,11 +36,32 @@ export const BlurBG = styled.div`
 `
 
 export const GameInfoInput = styled.input`
-    margin: 50px 15px 50px 15px;
+    margin: 50px 15px;
     background-color: #241400;
     border: 3px solid #f0a03f;
     border-radius: 12px;
-    padding: 10px 15px;
+    padding: 0 15px;
+    color: #f0a03f;
+    font-size: 18px;
+`
+
+export const StartPageInfoContainer = styled.div`
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+`
+
+export const ErrorText = styled.p`
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+    margin: 15px;
     color: #f0a03f;
 `
 
@@ -68,13 +89,35 @@ export const GameArea = styled.div`
     position: relative;
     overflow: hidden;
     background-image: url(${bg});
-    margin-top: 30px;
-    width: 73%;
-    height: calc(100% - 30px);
+    width: 80%;
+    height: 100vh;
     background-size: cover;
-    @media (max-width: 800px) {
-        width: 100%;
-    }
+`
+
+export const Wrapper = styled.div`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: 100vh;
+  flex-direction: row;
+`
+
+export const GameProcessPanel = styled.div`
+    background-color: #241400;
+    height: 100vh;
+    width: 20%;
+    color: #faa742;
+    font-family: Courier New, Courier, monospace;
+    padding: 30px 25px;
+    border: 3px solid #db9948;
+`
+
+export const GameInfo = styled.p`
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+    margin: 0;
+    color: #f0a03f;
 `
 
 

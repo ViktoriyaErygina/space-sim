@@ -95,3 +95,27 @@ h1, h2, h3, h4, h5, h6 {
   font-size: inherit;
   font-weight: 400;
 }
+
+
+.react-aria-TimeField {
+  color: #faa742;
+}
+
+.react-aria-DateInput {
+  display: flex;
+  background: #241400;
+  width: fit-content;
+  min-width: 150px;
+  border: 3px solid #f0a03f;
+  border-radius: 12px;
+  padding: 10px 0;
+  justify-content: center;
+}
+
+.react-aria-DateSegment {
+  padding: 0 2px;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  color: #faa742;
+  font-size: 20px;
+}
