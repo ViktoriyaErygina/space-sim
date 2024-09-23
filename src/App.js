@@ -1,25 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
+import GameOverPage from "./pages/GameOverPage";
+import StartPage from "./pages/StartPage";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import GamePage from "./pages/GamePage";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route exact path='/' element={<StartPage />}/>
+                <Route path='/startPage' element={<StartPage />}/>
+                <Route path='/gamePage' element={<GamePage />}/>
+                <Route path='/gameOver' element={<GameOverPage />}/>
+            </Routes>
+        </BrowserRouter>
+    );
 }
-
-export default App;
