@@ -68,7 +68,9 @@ export default function GamePage() {
                 <GameProcessPanel>
                     <GameInfo>Таймер: {data.paramTime.minutes}:{data.paramTime.seconds}</GameInfo>
                     <GameInfo>Баллы: {score}</GameInfo>
-                    <GameInfo>Имя: {data.paramName}</GameInfo>
+                    <GameInfo style={{
+                        color: data.paramName === "tester" ? "#bc234b" : "#f0a03f"
+                    }}>Имя: {data.paramName}</GameInfo>
                     <CommonButton style={{
                         position: "absolute",
                         bottom: "20px",

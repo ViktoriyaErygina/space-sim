@@ -31,21 +31,9 @@ export default function StartPage() {
             return setShowError(true)
         }
 
-        let encryptedName
-        if (name === "tester") {
-            const abc = "abcdefghijklmnopqrstuvwxyz";
-            let rs = "";
-            while (rs.length < 6) {
-                rs += abc[Math.floor(Math.random() * abc.length)];
-            }
-            encryptedName = rs
-        } else {
-            encryptedName = name
-        }
-
         navigate('/gamePage', {
             state: {
-                paramName: encryptedName,
+                paramName: name,
                 paramTime: time,
             }
         })
