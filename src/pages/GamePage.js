@@ -12,6 +12,10 @@ export default function GamePage() {
     const data = location.state
     const [score, setScore] = useState(0)
 
+    const timeObj = data.paramTime
+    const minutes = String(timeObj.minutes).padStart(2, "0")
+    const seconds = String(timeObj.seconds).padStart(2, "0")
+
     const handleGameOver = () => {
         navigate('/gameOver', {
                 state: {
@@ -66,7 +70,7 @@ export default function GamePage() {
                 </GameArea>
 
                 <GameProcessPanel>
-                    <GameInfo>Таймер: {data.paramTime.minutes}:{data.paramTime.seconds}</GameInfo>
+                    <GameInfo>Таймер: {minutes}:{seconds}</GameInfo>
                     <GameInfo>Баллы: {score}</GameInfo>
                     <GameInfo style={{
                         color: data.paramName === "tester" ? "#bc234b" : "#f0a03f"
