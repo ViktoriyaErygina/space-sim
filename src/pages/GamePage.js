@@ -47,8 +47,10 @@ export default function GamePage() {
     })
 
     useEffect(() => {
-        setPageWidth(document.getElementById('game-area').clientWidth);
-        setPageHeight(fieldRef.current.clientHeight);
+        if (fieldRef.current) {
+            setPageWidth(fieldRef.current.clientWidth);
+            setPageHeight(fieldRef.current.clientHeight);
+        }
     }, [])
 
     useEffect(() => {
@@ -56,7 +58,7 @@ export default function GamePage() {
                 let {hero} = prevState;
                 hero = {
                     left: (pageWidth - playerWidth) / 2,
-                    top: fieldRef.current.clientHeight - 2 * playerHeight,
+                    top: pageHeight - 2 * playerHeight,
                     wasShot: false
                 };
             return {...prevState, hero: hero};
@@ -74,10 +76,10 @@ export default function GamePage() {
                     Math.abs(meteorite.left - x) <= meteoriteWidth &&
                     meteorite.top < meteoriteHeight).length > 0)
                 ) {
-
+                    console.log(x)
                     let y = -meteoriteHeight
                     let {meteorites} = prevState
-                    let speed = 2, livesCount = 1
+                    let speed = 0.5, livesCount = 1
 
                     meteorites.push({left: x, top: y, alive: true, speed: speed, livesCount: livesCount})
                     return {...prevState, meteorites: meteorites}
@@ -91,11 +93,11 @@ export default function GamePage() {
     function startIntervals() {
         idIntervalEnemyGen.current = setInterval(() => {
             generateMeteorite()
-        }, 800)
+        }, 3500)
 
         idIntervalEnemyUpd.current = setInterval(() => {
             randomMoveEnemies();
-        }, 380)
+        }, 800)
     }
 
     function getRandomInt(max) {
@@ -113,11 +115,11 @@ export default function GamePage() {
                     let start = Date.now();
                     let timer = setInterval(() => {
                         let timePassed = Date.now() - start;
-                        if (timePassed >= 800) {
+                        if (timePassed >= 3500) {
                             clearInterval(timer);
                             return;
                         }
-                        meteorite.top += meteorite.speed + timePassed / 100;
+                        meteorite.top += meteorite.speed;
                     }, 20);
 
 
@@ -131,7 +133,7 @@ export default function GamePage() {
                         lives--;
                         health = 100;
                     }
-                    if (lives === 0 || (meteorite.alive && meteorite.top >= fieldRef.current.clientHeight - meteoriteHeight)) {
+                    if (lives === 0 || (meteorite.alive && meteorite.top >= pageHeight - meteoriteHeight)) {
                         health = 0;
                         gameOver = true;
                     }
@@ -151,7 +153,7 @@ export default function GamePage() {
 
 
             let aliveEnemies = newEnemies.filter((enemy) =>
-                    enemy.top < fieldRef.current.clientHeight + meteoriteHeight
+                    enemy.top < pageHeight + meteoriteHeight
                 // && enemy.alive
             )
             return { ...prevState, health: health, gameOver: gameOver, enemies: aliveEnemies, lives: lives };
@@ -163,8 +165,8 @@ export default function GamePage() {
         return (
             state.meteorites.map((meteorite) => {
                 return (
-                    <CSSTransition in={true} timeout={800} classNames="enshot">
-                        <img src={meteoriteImg} alt="enemy" style={{ filter: "hue-rotate(150deg)", position: "absolute", left: `${meteorite.left}px`, top: `${meteorite.top}px`, width: `${meteoriteWidth}px`, height: `${meteoriteHeight}px` }} />
+                    <CSSTransition in={true} timeout={1500} classNames="enshot">
+                        <img src={meteoriteImg} alt="enemy" style={{ position: "absolute", left: `${meteorite.left}px`, top: `${meteorite.top}px`, width: `${meteoriteWidth}px`, height: `${meteoriteHeight}px` }} />
                     </CSSTransition>)
             })
         )
