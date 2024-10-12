@@ -12,6 +12,15 @@ export const NameOfGame = styled.p`
     color: #f0a03f;
     margin-top: 50%;
 `
+export const GameInfoInput = styled.input`
+    margin: 50px 15px;
+    background-color: #241400;
+    border: 3px solid #f0a03f;
+    border-radius: 12px;
+    padding: 0 15px;
+    color: #f0a03f;
+    font-size: 18px;
+`
 
 export const CommonButton = styled.button`
     cursor: pointer;
@@ -24,8 +33,6 @@ export const CommonButton = styled.button`
     padding: 7px 15px;
     border: 3px solid #f0a03f;
 `
-
-
 export const BlurBG = styled.div`
     filter: blur(3px);
     display: flex;
@@ -33,16 +40,6 @@ export const BlurBG = styled.div`
     align-items: center;
     height: 100vh;
     background-image: url(${bg})
-`
-
-export const GameInfoInput = styled.input`
-    margin: 50px 15px;
-    background-color: #241400;
-    border: 3px solid #f0a03f;
-    border-radius: 12px;
-    padding: 0 15px;
-    color: #f0a03f;
-    font-size: 18px;
 `
 
 export const StartPageInfoContainer = styled.div`

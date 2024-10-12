@@ -6,7 +6,6 @@ import TimePicker from "./components/TimePicker";
 export default function StartPage() {
     const location = useLocation()
     const initName = location.state?.nameParam || ''
-    console.log(initName)
     const [name, setName] = useState(initName)
     const [time, setTime] = useState('')
     const [showError, setShowError] = useState(false)

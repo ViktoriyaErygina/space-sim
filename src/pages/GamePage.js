@@ -1,9 +1,11 @@
 import {useLocation, useNavigate} from "react-router-dom";
 import playerImg from '../content/Hero_Ship.png'
-import meteoriteImg from '../content/Meteorite.png'
 import heroShorImg from '../content/Hero_Shot.png'
 import {CommonButton, GameArea, GameInfo, GameProcessPanel, Wrapper} from "./components/styles";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
+import MovingObject from "./components/MovingObject";
+
+const METEORITES_COUNT = 6
 
 export default function GamePage() {
     const location = useLocation()
@@ -11,6 +13,23 @@ export default function GamePage() {
 
     const data = location.state
     const [score, setScore] = useState(0)
+    const [meteorites, setMeteorites] = useState([])
+    const meteoritesCountRef = useRef(0)
+
+    useEffect(() => {
+        const addMeteorites = () => {
+            meteoritesCountRef.current++
+            setMeteorites(prev => [...prev, <MovingObject/>])
+
+            if (meteoritesCountRef.current === METEORITES_COUNT) {
+                return
+            }
+
+            setTimeout(addMeteorites, 1000 + 1500 * Math.random())
+        }
+
+        addMeteorites()
+    }, [])
 
     const timeObj = data.paramTime
     const minutes = String(timeObj.minutes).padStart(2, "0")
@@ -27,6 +46,7 @@ export default function GamePage() {
     }
 
     const playerRef = useRef()
+    const shotRef = useRef()
 
     const [state, setState] = useState({
         hero: {
@@ -48,17 +68,9 @@ export default function GamePage() {
                          }}/>
                     >
 
-                    <img src={meteoriteImg} alt="meteorite"
-                         style={{
-                             left: "50%",
-                             top: "20px",
-                             position: "absolute",
-                             width: 170,
-                             height: 140
-                         }}/>
-                    >
+                    {meteorites}
 
-                    <img src={heroShorImg} alt="hero-shot"
+                    <img src={heroShorImg} alt="hero-shot" ref={shotRef}
                          style={{
                              left: "50%",
                              bottom: "140px",
